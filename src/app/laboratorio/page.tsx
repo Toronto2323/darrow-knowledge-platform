@@ -1,56 +1,57 @@
 import type { Metadata } from "next";
+import { InteractiveSealLab } from "@/components/lab/InteractiveSealLab";
 import { PageHero } from "@/components/page/PageHero";
-import { TopicList } from "@/components/page/TopicList";
 import { Container } from "@/components/ui/Container";
-import { Section } from "@/components/ui/Section";
 
 export const metadata: Metadata = {
-  title: "Laboratorio interactivo de sellado",
+  title: "Laboratorio interactivo de sellado | DARROW",
   description:
-    "Laboratorio interactivo DARROW para explorar cilindros hidráulicos, motores, bombas y componentes de sellado industrial.",
+    "Laboratorio interactivo DARROW para explorar componentes de sellado, diagnosticar fallas visibles y comprender causas probables en sistemas hidráulicos.",
 };
+
+const labObjectives = [
+  "Identificar componentes de un sistema de sellado.",
+  "Comprender la función técnica de cada pieza.",
+  "Relacionar síntomas visibles con causas probables.",
+  "Conectar el diagnóstico con materiales y simuladores.",
+];
 
 export default function LaboratorioPage() {
   return (
     <>
       <PageHero
         eyebrow="Laboratorio interactivo"
-        title="Explora máquinas y componentes como una herramienta educativa."
-        description="El laboratorio será la diferencia competitiva de DARROW: modelos interactivos donde el usuario hace clic, identifica componentes y aprende función, desgaste, material y aplicación."
+        title="Diagnostica sistemas de sellado haciendo clic sobre sus componentes."
+        description="Explora un modelo técnico de cilindro hidráulico, selecciona cada componente y aprende función, materiales típicos, fallas visibles, causas probables y revisiones recomendadas antes de reemplazar una pieza."
       />
 
-      <Section className="bg-transparent">
-        <Container>
-          <div className="grid gap-8 lg:grid-cols-[1fr_1.1fr] lg:items-center">
-            <TopicList
-              title="Primer modelo recomendado: cilindro hidráulico"
-              items={[
-                "Pistón",
-                "Sello de pistón",
-                "Sello de vástago",
-                "Limpiador",
-                "Guía",
-                "O-ring",
-                "Back-up ring",
-                "Zona de presión",
-              ]}
-            />
+      <Container>
+        <section className="relative -mt-8 rounded-[2rem] border border-[#F2F2F2]/10 bg-[#07110d]/58 p-5 shadow-[0_16px_54px_rgba(0,0,0,0.22)] backdrop-blur-md sm:p-6 lg:p-7">
+          <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#12A646]">
+                Finalidad del laboratorio
+              </p>
+              <h2 className="mt-3 text-2xl font-black leading-[1.05] tracking-[-0.035em] text-[#F2F2F2] sm:text-3xl">
+                Convertir una máquina en una experiencia de aprendizaje técnico.
+              </h2>
+            </div>
 
-            <div className="rounded-[2rem] border border-[#12A646]/35 bg-[#262626]/72 p-6">
-              <div className="rounded-[1.5rem] border border-[#F2F2F2]/10 bg-[#0B0F1A]/72 p-6">
-                <div className="h-16 rounded-full bg-gradient-to-r from-[#085924] via-[#12A646] to-[#03A62C]" />
-                <div className="mt-6 grid gap-3">
-                  {["Función", "Material típico", "Desgaste visible", "Falla probable", "Aplicación"].map((item) => (
-                    <div key={item} className="rounded-2xl bg-[#262626]/72 px-4 py-3 text-sm font-semibold text-[#F2F2F2]/78">
-                      {item}
-                    </div>
-                  ))}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {labObjectives.map((objective) => (
+                <div
+                  key={objective}
+                  className="rounded-2xl border border-[#F2F2F2]/10 bg-[#0B1118]/58 p-4 text-sm font-semibold leading-6 text-[#F2F2F2]/72"
+                >
+                  {objective}
                 </div>
-              </div>
+              ))}
             </div>
           </div>
-        </Container>
-      </Section>
+        </section>
+
+        <InteractiveSealLab />
+      </Container>
     </>
   );
 }
